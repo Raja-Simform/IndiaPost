@@ -23,10 +23,10 @@ export interface FilterProps {
 
 export type SearchProps = {
   data: {
-    PostOffice?: PostOffice[];
+    PostOffice: PostOffice[]|null;
     Message: string;
   };
-  CODE: string;
+  CODE: string|number;
 };
 
 export type SearchResultRenderProps = {
