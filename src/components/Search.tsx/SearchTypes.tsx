@@ -18,5 +18,5 @@ export interface SearchData {
 }
 
 export interface SearchProps {
-  PINCODE: number | string;
+  CODE: number | string;
 }
