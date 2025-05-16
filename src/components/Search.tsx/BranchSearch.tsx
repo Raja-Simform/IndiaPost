@@ -1,62 +1,51 @@
 import { useEffect, useState } from "react";
 import type { SearchData, SearchProps } from "./SearchTypes";
 import SearchResult from "../SearchResults/SearchResult";
+import Loading from "../Loading/Loading";
+import FetchError from "../Error/Error";
+import NotFound from "../Error/NotFound";
+import concatenate from "../../utility/Concatenate";
 
 export default function PostOfficeList({ CODE }: SearchProps) {
   const [data, setData] = useState<SearchData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-
+  const Endpoints=`https://api.postalpincode.in/postoffice/`;
   useEffect(() => {
     async function fetchPostOffices() {
       setLoading(true);
       setError(null);
       setData(null);
       try {
-        const res = await fetch(`https://api.postalpincode.in/postoffice/${CODE}`);
+        const res = await fetch(concatenate(Endpoints,CODE));
+      
         if (!res.ok) {
           throw new Error("Failed to fetch data");
         }
-        const json: SearchData[] = await res.json();
-        // The API returns an array with one object
-        if (json.length === 0) {
+        const PostOfficeData: SearchData[] = await res.json();
+        if (PostOfficeData.length === 0) {
           setError("No data found");
           setData(null);
         } else {
-          setData(json[0]);
+          setData(PostOfficeData[0]);
         }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (err: any) {
-        setError(err.message || "Something went wrong");
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message || "Something went wrong");
+        }
       } finally {
         setLoading(false);
       }
     }
     fetchPostOffices();
-  }, [CODE]);
+  }, [CODE,Endpoints]);
 
-  if (loading)
-    return (
-      <div className="flex justify-center items-center h-48 text-gray-500">
-        Loading...
-      </div>
-    );
+  if (loading) return <Loading />;
 
-  if (error)
-    return (
-      <div className="flex justify-center items-center h-48 text-red-500">
-        Error: {error}
-      </div>
-    );
+  if (error) return <FetchError messege={error} />;
 
-  if (!data || data.Status === "Error" || !data.PostOffice)
-    return (
-      <div className="flex justify-center items-center h-48 text-gray-500">
-        No post offices found for PIN code {CODE}.
-      </div>
-    );
-
-  return (
-    <SearchResult data={data} CODE={CODE}/>
-  );
+  if (!data || data.Status === "Error" || !data.PostOffice){
+    return <NotFound CODE={CODE} />
+  }  ;
+  return <SearchResult data={data} CODE={CODE} />;
 }

@@ -2,6 +2,7 @@
 import Home from '../../pages/Home/Home'
 import Pincode from '../../pages/Pincode/Pincode';
 import Branch from '../../pages/Branch/Branch';
+import Error from '../Error/Error';
 
 
 
@@ -27,6 +28,6 @@ export const routes: RouteItem[] = [
   
   {
     path: '*',
-    element: () => <h2>Page Not Found</h2>,
+    element: () => <Error messege='404! Page Not Found'/>,
   },
 ]
