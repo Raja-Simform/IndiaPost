@@ -17,7 +17,7 @@ export default function Home() {
             Search by PIN Code
           </Link>
           <Link
-            to="/random"
+            to="/branchsearch"
             className="px-8 py-4 bg-green-600 text-white rounded-full text-xl font-semibold hover:bg-green-700 transition"
           >
             Search by Branch Name
