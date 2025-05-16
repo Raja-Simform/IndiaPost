@@ -1,11 +1,11 @@
 import Navbar from "../../components/Navbar/Navbar";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="max-w-4xl mx-auto p-8 text-center">
+      {/* <main className="max-w-4xl mx-auto p-8 text-center">
         <h2 className="text-5xl font-bold mb-6 text-blue-700">Welcome to Indian Post</h2>
         <p className="text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
           Discover detailed information about any post office in India using the Postal PIN Code API.
@@ -40,7 +40,7 @@ export default function Home() {
           </p>
         </section>
       </main>
-    
+     */}
     </>
   );
 }
