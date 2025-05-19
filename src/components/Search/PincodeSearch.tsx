@@ -47,7 +47,7 @@ export default function PostOfficeList({ CODE }: SearchProps) {
 
   if (error)
     return (
-      <FetchError messege={error}/>
+      <FetchError message={error}/>
     );
 
   if (!data || data.Status === "Error" || !data.PostOffice)

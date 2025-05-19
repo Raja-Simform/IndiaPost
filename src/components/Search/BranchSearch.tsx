@@ -42,7 +42,7 @@ export default function PostOfficeList({ CODE }: SearchProps) {
 
   if (loading) return <Loading />;
 
-  if (error) return <FetchError messege={error} />;
+  if (error) return <FetchError message={error} />;
 
   if (!data || data.Status === "Error" || !data.PostOffice){
     return <NotFound CODE={CODE} />
