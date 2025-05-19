@@ -1,15 +1,13 @@
 import { useRef, useState } from "react";
-import PincodeSearch from "../../components/Search.tsx/PincodeSearch";
+import PincodeSearch from "../../components/Search/PincodeSearch";
 
 export default function Pincode() {
-  const [search, setSearch] = useState<boolean>(false);
   const [code, setCode] = useState<string>("");
   const ref = useRef<HTMLInputElement|null>(null);
 
   function handleSearch() {
     const data = ref.current?.value??"";
     setCode(data);
-    setSearch(true);
   }
 
   return (
@@ -28,7 +26,7 @@ export default function Pincode() {
         Search
       </button>
      </div>
-      {search && <PincodeSearch CODE={code} />}
+      {code && <PincodeSearch CODE={code} />}
     </div>
   );
 }

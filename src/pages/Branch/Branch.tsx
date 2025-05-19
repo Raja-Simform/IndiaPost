@@ -1,15 +1,13 @@
 import { useRef, useState } from "react";
-import BranchSearch from "../../components/Search.tsx/BranchSearch";
+import BranchSearch from "../../components/Search/BranchSearch";
 
 export default function Branch() {
-  const [search, setSearch] = useState<boolean>(false);
   const [code, setCode] = useState<string>("");
   const ref = useRef<HTMLInputElement | null>(null);
 
   function handleSearch() {
     const data = ref.current?.value ?? "";
     setCode(data);
-    setSearch(true);
   }
   return (
     <>
@@ -27,7 +25,7 @@ export default function Branch() {
           Search
         </button>
       </div>
-      {search && <BranchSearch CODE={code} />}
+      {code && <BranchSearch CODE={code} />}
     </>
   );
 }

@@ -21,7 +21,6 @@ export default function PostOfficeList({ CODE }: SearchProps) {
           throw new Error("Failed to fetch data");
         }
         const PostOfficeData: SearchData[] = await res.json();
-        // The API returns an array with one object
         if (PostOfficeData.length === 0) {
           setError("No data found");
           setData(null);

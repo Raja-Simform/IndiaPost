@@ -28,6 +28,6 @@ export const routes: RouteItem[] = [
   
   {
     path: '*',
-    element: () => <Error messege='404! Page Not Found'/>,
+    element: Error,
   },
 ]
