@@ -8,7 +8,6 @@ export interface PostOffice {
   Division: string;
   Region: string;
   State: string;
-  Country: string;
 }
 
 export interface SearchData {
@@ -17,6 +16,19 @@ export interface SearchData {
   PostOffice: PostOffice[] | null;
 }
 
-export interface SearchProps {
-  PINCODE: number | string;
+export interface FilterProps {
+  delivery: string;
+  branchType: string;
 }
+
+export type SearchProps = {
+  data: {
+    PostOffice: PostOffice[] | null;
+    Message: string;
+  };
+  CODE: string | number;
+};
+
+export type SearchResultRenderProps = {
+  filteredPostOffices?: PostOffice[];
+};
